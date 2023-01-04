@@ -13,4 +13,4 @@ async function loadCorpus(corpuspath) {
 
 window.bullshitGenerator = { generate, createRandomPicker, loadCorpus };
 
-export { generate, createRandomPicker, loadCorpus };
+// export { generate, createRandomPicker, loadCorpus };
