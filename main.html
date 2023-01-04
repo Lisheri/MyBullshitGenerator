@@ -23,9 +23,9 @@
   <main>
     <article></article>
   </main>
+  <script src="https://github.com/Lisheri/MyBullshitGenerator/blob/master/dist/index.js"></script>
   <script type="module">
-    import { generate } from './lib/generator.js';
-    import { createRandomPicker } from './lib/random.js';
+    const {generate, createRandomPicker, loadCorpus} = bullshitGenerator;
     const options = document.querySelector('.options');
     const config = { min: 2000, max: 5000 };
     options.addEventListener('change', ({ target }) => {
@@ -36,11 +36,10 @@
     const generateButton = document.getElementById('generate');
     const anotherTitleButton = document.getElementById('anotherTitle');
     const article = document.querySelector('article');
-    
     const titleEl = document.getElementById('title');
 
-    (async () => {
-      const corpus = await (await fetch('./corpus/data.json')).json();
+    (async function () {
+      const corpus = await loadCorpus();
       const pickTitle = createRandomPicker(corpus.title);
       titleEl.value = pickTitle();
       generateButton.addEventListener('click', () => {
@@ -51,7 +50,7 @@
         titleEl.value = pickTitle();
         if (article.innerHTML) generateButton.click();
       });
-    })();
+    }());
   </script>
 </body>
 
